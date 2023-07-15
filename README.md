@@ -6,8 +6,43 @@ Initially, there was a few sequence of commands used to deploy it directly on EC
 
 Here's the list of commands to run it on EC2 instance. These should be executed on Cloud9 CLI:
 
+### Configurations for EC2 ###
+`
+curl -s http://169.254.169.254/latest/meta-data
+`
+
+This will return the address for the mac:
+`
+curl -s http://169.254.169.254/latest/meta-data/mac
+`
+
+This is used to redirect to the security groups or ipv4
+`
+curl -s http://169.254.169.254/latest/meta-data/mac/address 
+`
 
 `
-curl -s http://169.254.169.254/latest/meta-data
-curl -s http://169.254.169.254/latest/meta-data
+curl -s http://169.254.169.254/latest/meta-data/mac/address/security-group-ids 
 `
+
+Open up the port on web for the security group so that your IP can access and run the website:
+`
+aws ec2 authorize-security-group ingress --group-id sg-XXX --port 8080 --protocol tcp --cidr youripxx/32
+`
+
+
+`
+aws ec2 describe-security-groups --group-ids sg-xx --output-text --filters Name=ip-permission.to-port,values=8080
+`
+
+`
+Port 8080: npm start
+`
+
+To see the results of this, head to publicipv/8080.This can be placed on git by using git init command
+
+### Configurations for EB ###
+Complete the installation for EB using git clone EBLinkxxx. These are the commands used to deploy on EB:
+1. `eb init`: Region, repo on codecommit, files for .ebextensions
+2. `eb create`: 
+
