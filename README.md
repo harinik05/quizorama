@@ -91,6 +91,6 @@ docker tag docker_idxxx accountnoxxx.dkr.ecr.us-east-1.amazonaws.com/quizoroma
 `
 
 #### Debugging ####
-Give IAM role permission to read ECR
+Give IAM role permission to read ECR. Add in dockerimage.aws.json
 
 
