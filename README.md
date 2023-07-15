@@ -73,12 +73,14 @@ docker build --quiroroma
 `
 
 Create a repo on ECR and authenticate via JSON web token for temp credentials
+
 `
 aws ecr get-login-password | docker login --username AWS --password -stdin accountnoxxx.dkr.ecr.us-east-1.amazonaws.com/quizoroma
 `
 
 
 Get the image id:
+
 `
 docker images
 `
